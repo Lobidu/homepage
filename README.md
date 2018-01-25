@@ -1,6 +1,14 @@
-# homepage
+# Homepage
 
-> Janis' private homepage
+> Janis' private homepage project, built entirely with vue.js, bulma and nothing else.
+
+## Structure
+
+The structure is composed of .vue Component files
+- App.vue contains the router view
+- The only available view so far is HelloWorld, which displays the main Single page, composed of the display components
+
+vue-router is currently not used, but set up in case I'd like to add some deeplinking later. 
 
 ## Build Setup
 
