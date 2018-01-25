@@ -1,24 +1,24 @@
 <template>
   <div>
     <stage-component/>
-    <intro/>
-    <puzzle viewIndex="2"/>
-    <showcase/>
-    <call-to-action />
+    <intro-component/>
+    <puzzle-component viewIndex="2"/>
+    <showcase-component/>
+    <call-to-action-component />
     <footer-component />
   </div>
 </template>
 
 <script>
   import StageComponent from './StageComponent';
-  import Intro from './Intro';
-  import Puzzle from './Puzzle';
-  import Showcase from './Showcase';
-  import CallToAction from './CallToAction';
+  import IntroComponent from './IntroComponent';
+  import PuzzleComponent from './PuzzleComponent';
+  import ShowcaseComponent from './ShowcaseComponent';
+  import CallToActionComponent from './CallToActionComponent';
   import FooterComponent from './FooterComponent';
 
   export default {
-  components: {StageComponent, Intro, Puzzle, Showcase, CallToAction, FooterComponent}
+  components: {StageComponent, IntroComponent, PuzzleComponent, ShowcaseComponent, CallToActionComponent, FooterComponent}
 }
 </script>
 

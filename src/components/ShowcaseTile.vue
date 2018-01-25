@@ -4,7 +4,7 @@
       <transition name="flip">
       <!-- State if Box is not activated -->
       <div class="box is-mobile is-radiusless level" :class="color" v-show="isFrontShown">
-        <div class="level-item is-block is-marginless">
+        <div class="level-item is-block is-marginless has-no-flex-shrink">
           <div class="level is-mobile">
             <div class="level-item is-marginless">
                <span class="icon is-large">
@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="level is-mobile">
-            <div class="level-item has-text-centered is-marginless">
+            <div class="level-item has-text-centered is-marginless has-no-flex-shrink">
               <h1 class="title is-4">{{title}}</h1>
             </div>
           </div>
@@ -23,17 +23,17 @@
     <transition name="flip">
       <!-- State if Box is activated -->
       <div class="box level is-mobile is-radiusless" :class="color" v-show="isBackShown">
-        <div class="level-item">
+        <div class="level-item has-no-flex-shrink">
           <div>
-            <div class="is-text has-text-centered">{{text}}</div>
+            <div class="is-text has-text-centered is-small-text-mobile">{{text}}</div>
             <div v-if="skills" class="level">
               <table class="level-item skills" >
                 <tbody>
                 <tr v-for="skill in skills">
-                  <td>
+                  <td class="is-text is-small-text-mobile">
                     {{skill.name}}
                   </td>
-                  <td>
+                  <td class="is-text is-small-text-mobile">
                       <span v-for="i in [1,2,3,4,5]">
                         <span v-if="i<=(skill.percentage/100*5)">&#9679;</span>
                         <span v-else>&#9675;</span>
@@ -102,6 +102,8 @@
     width: 40vw;
     max-height: 450px;
     max-width: 450px;
+    min-height: 350px;
+    min-width: 350px;
     perspective: 1000px;
   }
   .box {
@@ -111,6 +113,10 @@
     right: 30px;
     bottom: 30px;
     margin: 0;
+  }
+  /* TODO: This is a hack. Find out where the behavior in Chrome comes from and fix it properly. */
+  .has-no-flex-shrink {
+    flex-shrink: unset;
   }
   .skills {
     margin-top: 20px;
@@ -142,16 +148,18 @@
       bottom: 20px;
     }
   }
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 680px) {
     .tile-container {
       height: 70vw;
       width: 70vw;
+      min-width: 250px;
+      min-height: 250px;
     }
     .box {
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
     }
   }
 
@@ -164,6 +172,11 @@
   }
   .icon i {
     font-size: 3em;
+  }
+  @media screen and (max-width: 460px) {
+    .is-small-text-mobile {
+      font-size: 12px;
+    }
   }
 
   /* Box background colors */

@@ -24,7 +24,7 @@
 <script>
   import ShowcaseTile from './ShowcaseTile';
     export default {
-      name: "showcase",
+      name: "showcase-component",
       components: {ShowcaseTile},
       data() {
         return {
@@ -35,9 +35,9 @@
             {
               color: 'yellow',
               icon: 'fa-code',
-              title: 'Front end Development',
-              text: 'I try to create fast, maintainable code. I love trying new technologies and languages. So if yours ' +
-              'is not included, chances are, I\'d love to try it anyway.',
+              title: 'Front end development',
+              text: 'I love trying new technologies and languages. If yours ' +
+              'is not included, chances are, I\'d love to learn it anyway.',
               skills: [
                 {
                   'name': 'HTML/CSS',
@@ -63,9 +63,38 @@
             },
             {
               color: 'green',
+              icon: 'fa-server',
+              title: 'Back end development',
+              text: 'I always try to write fast, secure and maintainable code. I use open source solutions ' +
+              'to ensure easy maintenance.',
+              skills: [
+                  {
+                      'name': 'node.js',
+                      'percentage': 100
+                  },
+                  {
+                      'name': 'Python',
+                      'percentage': 100
+                  },
+                  {
+                      'name': 'php',
+                      'percentage': 80
+                  },
+                  {
+                      'name': 'REST API',
+                      'percentage': 80
+                  },
+                  {
+                      'name': 'NoSQL / SQL',
+                      'percentage': 60
+                  }
+                ]
+            },
+            {
+              color: 'green',
               icon: 'fa-envelope',
-              title: 'Email Development',
-              text: 'Email frontend development is completely different from Web frontend. I create awesome mobile-first' +
+              title: 'Email development',
+              text: 'Email frontend development is completely different from web frontend. I create awesome mobile-first' +
               ' email templates that work in almost all mail clients. Even Outlook!',
               skills: [
                 {
@@ -75,16 +104,27 @@
               ]
             },
             {
-              color: 'green',
-              icon: 'fa-users',
-              title: 'User Experience Design',
-              text: ''
+              color: 'yellow',
+              icon: 'fa-chart-bar',
+              title: 'Data Analysis & Testing',
+              text: 'Everything you think you know about your users - do you really know it or do you assume? ' +
+              'Data Analysis and A/B-Tests help you keep track of what your users are doing. I can help you ' +
+              'with quick ad-hoc testing and automated KPI-Analysis',
+
             },
             {
               color: 'yellow',
+              icon: 'fa-users',
+              title: 'User Experience Design',
+              text: 'I develop my software constantly with the user in mind. I have a degree in Communications and ' +
+              'years of experience in storytelling. It\'s something that comes with it.'
+            },
+            {
+              color: 'green',
               icon: 'fa-mobile-alt',
               title: 'Content Management Systems',
-              text: '',
+              text: 'CMS are probably the easiest quick-start into the web. I have set up countless Drupal ' +
+              'and Wordpress instances (and a few other CMS, too) so I know exactly how to tune them to your needs.',
               skills: [
                 {
                   'name': 'Drupal',
@@ -96,56 +136,7 @@
                 }
               ]
             },
-            {
-              color: 'yellow',
-              icon: 'fa-server',
-              title: 'Back end development',
-              text: '',
-              skills: [
-                {
-                  'name': 'node.js',
-                  'percentage': 100
-                },
-                {
-                  'name': 'Python',
-                  'percentage': 100
-                },
-                {
-                  'name': 'php',
-                  'percentage': 80
-                },
-                {
-                  'name': 'REST API',
-                  'percentage': 80
-                },
-                {
-                  'name': 'NoSQL',
-                  'percentage': 75
-                },
-                {
-                  'name': 'SQL',
-                  'percentage': 60
-                }
-              ]
-            },
-            {
-              color: 'green',
-              icon: 'fa-chart-bar',
-              title: 'Data Analysis & Testing',
-              text: 'Everything you think you know about your users - do you really know it or do you assume? ' +
-              'Data Analysis and A/B-Tests help you keep track of what your users are doing. I can help you ' +
-              'with quick ad-hoc testing and complex automated KPI-Analysis',
-
-            }
           ]
-        }
-      },
-      methods: {
-        getTilePosition: function(j) {
-          // In two-column layouts the tile should either be left or right aligned. We can get a tiles' position
-          // by calculating the remainder of a division by two and using it as the index of the array ['left','right'].
-          let positions=['left','right'];
-          //return positions[j%2]
         }
       }
     }

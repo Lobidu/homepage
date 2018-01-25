@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div class="hero is-fullheight">
     <div class="effect-bar">
       <div class="bar top left green" :style="leftBarStyle">
       </div>
@@ -24,7 +24,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title is-2">{{text.title}}</h1>
-          <p>{{text.subtitle}}</p>
+          <p>{{text.subtitle}}<a href="mailto:janisaltherr@gmail.com">{{text.cta}}</a>{{text.ctaFollow}}</p>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        name: "puzzle",
+      name: "puzzle-component",
       props: {
           viewIndex: String
       },
@@ -43,8 +43,11 @@
             text: {
               story: 'Story',
               software: 'Software &',
-              title: 'I make the software for your story',
-              subtitle: 'I make sure the software plays nicely with your story.'
+              title: 'It is your story. Let\'s make it your software.',
+              subtitle: 'KPIs, User Stories, Bugfixes: I will carefully analyze your goals and craft a beautiful piece ' +
+              'of software to achieve them. ',
+              cta: 'Write me',
+              ctaFollow: ' your needs, I\'ll give you a feedback for free.'
             },
             scrollY: 0,
             initialOffset: 90,
@@ -93,6 +96,10 @@
 </script>
 
 <style scoped>
+  .hero {
+    overflow: hidden;
+    margin-top: -20vw;
+  }
   .bar {
     height: 10vh;
     width: 100vw;
@@ -100,12 +107,12 @@
     box-sizing: border-box;
   }
   .middle {
-    top: 9.9vh;
+    top: 9.8vh;
     left: 10vh;
-    overflow: hidden;
+    overflow: visible;
   }
   .bottom {
-    top: 19.8vh;
+    top: 19.6vh;
     left: 5vh;
   }
   .text-container {
@@ -113,14 +120,18 @@
   }
   .middle .text-container h1 {
     color: #ffffff;
+    z-index: 9;
   }
   .effect-bar {
     position: relative;
+    margin-top: 20vw;
     height: 30vh;
-   transform: rotate(-15deg);
+    transform: rotate(-15deg);
   }
-  .description {z-index: 9;
-   transform: rotate(-15deg);
+  .description {
+    margin: 0;
+    z-index: 9;
+    transform: rotate(-15deg);
   }
   .green {
     background-color: #00d1b2;

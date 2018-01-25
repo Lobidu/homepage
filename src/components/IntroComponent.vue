@@ -11,7 +11,7 @@
 
 <script>
     export default {
-      name: "intro",
+      name: "intro-component",
       data () {
           return {
             text: {

@@ -5,18 +5,18 @@
         <h1 class="title is-1">{{text.hello}}</h1>
         <h2 class="subtitle is-3">{{text.welcomemessage}}</h2>
       </div>
-      <div @click="blink()" class="janis">
-        <img v-show="(janisEyeState==='left')" src="../assets/Janis.svg" />
-        <img v-show="(janisEyeState==='right')" src="../assets/Janis_looks_right.svg" />
-        <img v-show="(janisEyeState==='blink')" src="../assets/Janis_blinks.svg" />
-      </div>
+    </div>
+    <div @click="blink()" class="janis">
+      <img v-show="(janisEyeState==='left')" src="../assets/Janis.svg" />
+      <img v-show="(janisEyeState==='right')" src="../assets/Janis_looks_right.svg" />
+      <img v-show="(janisEyeState==='blink')" src="../assets/Janis_blinks.svg" />
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'StageComponent',
+    name: 'stage-component',
     data() {
       return {
         text: {
@@ -54,7 +54,7 @@
 <style scoped>
   .janis {
     position: absolute;
-    bottom: 0;
+    top: 70vh; /* We need to set this to (100vh-img height), instead of bottom: 0, because Webkit subtracts the search bar from the position  */
     right: 5vh;
   }
   .janis img {
