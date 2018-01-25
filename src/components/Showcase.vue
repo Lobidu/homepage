@@ -6,14 +6,13 @@
       </div>
       <div class="container">
           <!-- This statement makes rows of two tiles, independent of how many tiles exist.-->
-          <div class="columns" v-for="i in (tiles.length/2)" :key="i">
+          <div class="columns level" v-for="i in (tiles.length/2)" :key="i">
             <!-- The formula [(i-1)*2,(i-1)*2+1] returns an array of the indexes of the two tiles in the current row-->
             <ShowcaseTile
               v-for="j in [(i-1)*2,(i-1)*2+1]"
               v-bind="tiles[j]"
               :key="j"
-              class="column level-item"
-              :tilePosition="getTilePosition(j)"
+              class="column"
             />
           </div>
         </div>
@@ -143,16 +142,18 @@
       },
       methods: {
         getTilePosition: function(j) {
+          // In two-column layouts the tile should either be left or right aligned. We can get a tiles' position
+          // by calculating the remainder of a division by two and using it as the index of the array ['left','right'].
           let positions=['left','right'];
-          console.log(positions[j%2]);
-          return positions[j%2]
+          //return positions[j%2]
         }
       }
     }
 </script>
 
 <style scoped>
-.tile.row {
-  padding: 0;
-}
+  .columns {
+    max-width: 960px;
+    margin: 0 auto;
+  }
 </style>

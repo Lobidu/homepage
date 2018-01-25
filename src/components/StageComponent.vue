@@ -23,39 +23,43 @@
           hello: 'Nice to meet you.',
           welcomemessage: 'I am Janis, a full stack web developer.',
         },
-        janisEyeState: 'left'
+        janisEyeState: 'left',
+        janisEyeAnimationInProgress: false
       }
     },
     methods: {
       blink() {
-        this.janisEyeState = 'right';
-        setTimeout(()=>{
-          this.janisEyeState = 'left';
-          setTimeout(()=>{
-            this.janisEyeState = 'blink';
-            setTimeout(()=>{this.janisEyeState = 'left'},100)
-          },300);
-        },300);
+        if(!this.janisEyeAnimationInProgress) { // don't start the animation while it's running.
+          this.janisEyeAnimationInProgress = true;
+
+          // There is no proper sleep() function in js, so we fake one with nested setTimeout() functions.
+          // I should make it a recursive for loop one day, but this works for now.
+          this.janisEyeState = 'right';
+          setTimeout(() => {
+              this.janisEyeState = 'left';
+              setTimeout(() => {
+                  this.janisEyeState = 'blink';
+                  setTimeout(() => {
+                      this.janisEyeState = 'left';
+                      this.janisEyeAnimationInProgress = false; // Finished. Reset.
+                  }, 100)
+              }, 300);
+          }, 300);
+        }
       }
     }
   }
 </script>
 
 <style scoped>
-  .hero {
-    padding: 0;
-  }
   .janis {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     right: 5vh;
   }
   .janis img {
     height: 30vh;
     width: 30vh;
     display: block;
-  }
-  .hidden {
-    display:none;
   }
 </style>

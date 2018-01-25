@@ -3,7 +3,8 @@
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          This website was proudly handcrafted using vue.js, bulma and AWS S3. <a href="">View it on github</a>.
+          This website was proudly handcrafted using vue.js and bulma.
+          <a href="https://github.com/Lobidu/homepage">View it on github</a>.
         </p>
         <p>&copy; {{new Date().getFullYear()}}</p>
       </div>

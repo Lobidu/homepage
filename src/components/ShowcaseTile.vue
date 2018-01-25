@@ -1,26 +1,29 @@
 <template>
-    <div class="container tile-container" @click="flipCard">
+  <div>
+    <div class="tile-container" @click="flipCard">
       <transition name="flip">
       <!-- State if Box is not activated -->
-      <div class="box level is-mobile is-radiusless" :class="[color, tilePosition]" v-if="isFrontShown">
-        <div class="level-item tile is-child is-parent is-vertical">
-          <div class="tile is-child level">
-            <div class="level-item">
+      <div class="box is-mobile is-radiusless level" :class="color" v-show="isFrontShown">
+        <div class="level-item is-block is-marginless">
+          <div class="level is-mobile">
+            <div class="level-item is-marginless">
                <span class="icon is-large">
                 <i class="fas fa-3x" :class="icon"></i>
               </span>
             </div>
           </div>
-          <div class="tile is-child level">
-            <h1 class="title is-4 level-item">{{title}}</h1>
+          <div class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+              <h1 class="title is-4">{{title}}</h1>
+            </div>
           </div>
         </div>
       </div>
     </transition>
     <transition name="flip">
       <!-- State if Box is activated -->
-      <div class="box level is-radiusless" :class="[color, tilePosition]" v-if="isBackShown">
-        <div class="level level-item">
+      <div class="box level is-mobile is-radiusless" :class="color" v-show="isBackShown">
+        <div class="level-item">
           <div>
             <div class="is-text has-text-centered">{{text}}</div>
             <div v-if="skills" class="level">
@@ -45,6 +48,7 @@
       </div>
     </transition>
   </div>
+  </div>
 </template>
 
 <script>
@@ -61,19 +65,29 @@
       data() {
           return {
             isFrontShown: true,
-            isBackShown: false
+            isBackShown: false,
+            isEffectActive: false
           }
       },
       methods: {
         flipCard: function() {
-          let delay = 400; // A slight bit more than the transition effect itself to avoid both elements existing at the same time
-          if(this.isFrontShown){
-            this.isFrontShown = !this.isFrontShown;
-            setTimeout(() => {this.isBackShown = !this.isBackShown}, delay)
-          }
-          else{
-            this.isBackShown = !this.isBackShown;
-            setTimeout(() => {this.isFrontShown = !this.isFrontShown}, delay)
+          if (!this.isEffectActive) { // Prevent this effect from being executed again while its still in transition
+            this.isEffectActive = true;
+            let delay = 350;
+            if(this.isFrontShown){
+              this.isFrontShown = !this.isFrontShown;
+              setTimeout(() => {
+                this.isBackShown = !this.isBackShown;
+                this.isEffectActive = false;
+              }, delay)
+            }
+            else{
+              this.isBackShown = !this.isBackShown;
+              setTimeout(() => {
+                this.isFrontShown = !this.isFrontShown;
+                this.isEffectActive = false;
+              }, delay)
+            }
           }
         }
       }
@@ -81,37 +95,67 @@
 </script>
 
 <style scoped>
+
+  /* scoped layout adjustments */
   .tile-container {
-    padding: 50px;
+    height: 40vw;
+    width: 40vw;
+    max-height: 450px;
+    max-width: 450px;
     perspective: 1000px;
   }
   .box {
-    height: 35vw;
-    max-height: 400px;
-    width: 35vw;
-    max-width: 400px;
-    margin: 0 auto;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    margin: 0;
   }
+  .skills {
+    margin-top: 20px;
+  }
+  .skills td {
+    padding: 2px;
+  }
+
+  /* Screen size dependent special treatments */
   @media screen and (min-width: 768px) {
-    .box.left {
+    /* For two-column layout */
+    .left {
       float:right;
     }
-    .box.right {
+    .right {
       float:left;
     }
   }
   @media screen and (max-width: 768px) {
-    .box {
+    .tile-container {
       height: 50vw;
       width: 50vw;
+      margin: 0 auto;
+    }
+    .box {
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
     }
   }
   @media screen and (max-width: 620px) {
-    .box {
+    .tile-container {
       height: 70vw;
       width: 70vw;
     }
+    .box {
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+    }
   }
+
+  /* Font Adjustments */
   .box, .box .title {
     color: #ffffff;
   }
@@ -121,12 +165,7 @@
   .icon i {
     font-size: 3em;
   }
-  .skills {
-    margin-top: 20px;
-  }
-  .skills td {
-    padding: 2px;
-  }
+
   /* Box background colors */
   .box.green {
     background-color: #00d1b2;
@@ -152,7 +191,7 @@
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
   }
-  .flip-enter{
+  .flip-enter {
     transform: rotateY(90deg);
   }
   .flip-leave-to {
